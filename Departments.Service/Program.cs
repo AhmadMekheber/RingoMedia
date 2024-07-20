@@ -1,5 +1,6 @@
 using Departments.Migrations.Data;
 using Microsoft.EntityFrameworkCore;
+using Departments.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<DataContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("Departments.Migrations"));
 });
+
+builder.Services.AddCoreServices();
 
 var app = builder.Build();
 
