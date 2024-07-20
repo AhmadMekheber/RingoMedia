@@ -1,6 +1,15 @@
-@model Departments.ViewModel.DepartmentViewModel
+@model List<Departments.ViewModel.DepartmentViewModel>
 
 <h2>Departments</h2>
-<ul>
-    @Html.Partial("_DepartmentPartial", Model)
+<ul class="department-ul">
+    @foreach (var department in Model)
+    {
+        <li class="department-li">
+            <strong>@department.Name</strong>
+            <img src="@department.LogoPath" alt="@department.Name" class="small-logo" />
+            <a href="@Url.Action("DepartmentDetails", "Department", new { departmentID = department.ID })" class="btn-custom">
+                    Show Sub-departments
+            </a>
+        </li>
+    }
 </ul>

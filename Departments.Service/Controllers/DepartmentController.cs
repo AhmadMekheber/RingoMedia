@@ -15,9 +15,21 @@ namespace Departments.Service.Controllers
             _departmentManager = departmentManager;
         }
 
-        public async Task<IActionResult> Index(long departmentID)
+        public async Task<IActionResult> Index()
+        {
+            var departments = await _departmentManager.GetDepartmentsAsync();
+
+            return View(departments);
+        }
+
+        public async Task<IActionResult> DepartmentDetails(long departmentID)
         {
             var department = await _departmentManager.GetDepartmentAsync(departmentID);
+
+            if (department == null)
+            {
+                return NotFound(departmentID);
+            }
 
             return View(department);
         }

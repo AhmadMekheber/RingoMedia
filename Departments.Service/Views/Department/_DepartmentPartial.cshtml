@@ -1,15 +1,17 @@
 @model Departments.ViewModel.DepartmentViewModel
 
-<li>
-    <strong>@Model.Name</strong>
-    <img src="@Model.LogoPath" alt="@Model.Name" class="small-logo" />
-    @if (Model.SubDepartments != null && Model.SubDepartments.Any())
-    {
-        <ul>
-            @foreach (var subDepartment in Model.SubDepartments)
-            {
-                @Html.Partial("_DepartmentPartial", subDepartment)
-            }
-        </ul>
-    }
-</li>
+<strong>@Model.Name</strong>
+<img src="@Model.LogoPath" alt="@Model.Name" class="small-logo" />
+<a href="@Url.Action("DepartmentDetails", "Department", new { departmentID = Model.ID })" class="btn-custom">
+        Show Sub-departments
+</a>
+
+@if (Model.SubDepartments != null && Model.SubDepartments.Any())
+{
+    <ul class="department-ul">
+        @foreach (var subDepartment in Model.SubDepartments)
+        {
+            @Html.Partial("_DepartmentPartial", subDepartment)
+        }
+    </ul>
+}

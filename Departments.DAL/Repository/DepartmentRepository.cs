@@ -19,10 +19,11 @@ namespace Departments.DAL.Reporsitory
                 .FirstOrDefaultAsync();
         }
 
-        public IQueryable<Department> GetDepartments()
+        public async Task<List<Department>> GetDepartments()
         {
-            return this.GetAll()
-                .Where(department => department.ParentDepartmentID == null);
+            return await this.GetAll()
+                .Where(department => department.ParentDepartmentID == null)
+                .ToListAsync();
         }
 
         public async Task<List<Department>> GetSubDepartmentsAsync(long parentDepartmentID)

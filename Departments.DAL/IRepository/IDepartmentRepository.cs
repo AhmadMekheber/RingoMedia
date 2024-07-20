@@ -7,7 +7,7 @@ namespace Departments.DAL.IRepository
     {
         Task<Department?> GetDepartmentAsync(long departmentID);        
         
-        IQueryable<Department> GetDepartments();
+        Task<List<Department>> GetDepartments();
 
         Task<List<Department>> GetSubDepartmentsAsync(long parentDepartmentID);
     }

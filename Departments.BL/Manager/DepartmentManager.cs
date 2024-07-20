@@ -14,6 +14,14 @@ namespace Departments.BL.Manager
             _departmentRepository = departmentRepository;
         }
 
+        public async Task<List<DepartmentViewModel>> GetDepartmentsAsync() {
+            var departments = await _departmentRepository.GetDepartments();
+
+            return departments
+                .Select(MapDepartment)
+                .ToList();
+        }
+
         public async Task<DepartmentViewModel?> GetDepartmentAsync(long departmentID)
         {
             DepartmentViewModel? departmentViewModel = null;
@@ -21,13 +29,13 @@ namespace Departments.BL.Manager
             Department? department = await _departmentRepository.GetDepartmentAsync(departmentID);
 
             if (department != null) {
-                departmentViewModel = await MapToViewModel(department);
+                departmentViewModel = await MapWithSubDepartments(department);
             }
 
             return departmentViewModel;
         }
 
-        private async Task<DepartmentViewModel> MapToViewModel(Department department)
+        private DepartmentViewModel MapDepartment(Department department) 
         {
             DepartmentViewModel departmentViewModel = new DepartmentViewModel
             {
@@ -35,17 +43,30 @@ namespace Departments.BL.Manager
                 Name = department.Name,
                 LogoPath = department.LogoPath,
                 ParentDepartmentID = department.ParentDepartmentID,
-                SubDepartments = new List<DepartmentViewModel>()
             };
+
+            return departmentViewModel;
+        }
+
+        private async Task<DepartmentViewModel> MapWithSubDepartments(Department department)
+        {
+            DepartmentViewModel departmentViewModel = MapDepartment(department);
+
+            await MapSubDepartments(department, departmentViewModel);
+
+            return departmentViewModel;
+        }
+
+        private async Task MapSubDepartments(Department department, DepartmentViewModel departmentViewModel) 
+        {
+            departmentViewModel.SubDepartments = new List<DepartmentViewModel>();
 
             var subDepartments = await _departmentRepository.GetSubDepartmentsAsync(department.ID);
 
             foreach (Department subDepartment in subDepartments)
             {
-                departmentViewModel.SubDepartments.Add(await MapToViewModel(subDepartment));
+                departmentViewModel.SubDepartments?.Add(await MapWithSubDepartments(subDepartment));
             }
-
-            return departmentViewModel;
         }
     }
 }
