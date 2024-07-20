@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Departments.Migrations\Departments.Migrations.csproj" />
     <ProjectReference Include="..\Departments.DI\Departments.DI.csproj" />
+    <ProjectReference Include="..\Departments.ViewModel\Departments.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

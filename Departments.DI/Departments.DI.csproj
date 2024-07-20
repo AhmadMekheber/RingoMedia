@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Departments.DAL\Departments.DAL.csproj" />
+    <ProjectReference Include="..\Departments.BL\Departments.BL.csproj" />
   </ItemGroup>
   
 </Project>

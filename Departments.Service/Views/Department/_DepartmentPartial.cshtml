@@ -1,0 +1,15 @@
+@model Departments.ViewModel.DepartmentViewModel
+
+<li>
+    <strong>@Model.Name</strong>
+    <img src="@Model.LogoPath" alt="@Model.Name" class="small-logo" />
+    @if (Model.SubDepartments != null && Model.SubDepartments.Any())
+    {
+        <ul>
+            @foreach (var subDepartment in Model.SubDepartments)
+            {
+                @Html.Partial("_DepartmentPartial", subDepartment)
+            }
+        </ul>
+    }
+</li>

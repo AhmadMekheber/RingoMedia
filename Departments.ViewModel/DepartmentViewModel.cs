@@ -1,4 +1,4 @@
-namespace Departments.Service.ViewModel
+namespace Departments.ViewModel
 {
     public class DepartmentViewModel
     {

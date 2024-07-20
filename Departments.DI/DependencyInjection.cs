@@ -1,3 +1,5 @@
+using Departments.BL.IManager;
+using Departments.BL.Manager;
 using Departments.DAL.IRepository;
 using Departments.DAL.Reporsitory;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +11,8 @@ namespace Departments.DI
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-
+            services.AddScoped<IDepartmentManager, DepartmentManager>();
+            
             return services;
         }
     }
