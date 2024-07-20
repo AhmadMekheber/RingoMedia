@@ -11,7 +11,7 @@
     <ul class="department-ul">
         @foreach (var subDepartment in Model.SubDepartments)
         {
-            @Html.Partial("_DepartmentPartial", subDepartment)
+            <partial name="_DepartmentPartial" model="@subDepartment" />
         }
     </ul>
 }
