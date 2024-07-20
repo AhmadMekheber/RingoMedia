@@ -1,7 +1,21 @@
+using Departments.Migrations.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//To Run Migrations:
+//Run this command from this service project directory
+//dotnet ef migrations add Initial --project ../Departments.Migrations
+//
+//To Update Database Run: dotnet ef Database update
+//
+builder.Services.AddDbContext<DataContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("Departments.Migrations"));
+});
 
 var app = builder.Build();
 
