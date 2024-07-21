@@ -1,0 +1,10 @@
+@model Departments.ViewModel.DepartmentViewModel
+
+<strong>@Model.Name</strong>
+<img src="@Model.LogoPath" alt="@Model.Name" class="small-logo" />
+<a href="@Url.Action("DepartmentDetails", "Department", new { departmentID = Model.ID })" class="btn-custom">
+        Show Sub-departments
+</a>
+<a href="@Url.Action("DepartmentHierarchy", "Department", new { departmentID = Model.ID })" class="btn-custom">
+        Show Hierarchy
+</a>

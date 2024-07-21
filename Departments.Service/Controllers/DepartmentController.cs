@@ -33,5 +33,12 @@ namespace Departments.Service.Controllers
 
             return View(department);
         }
+
+        public async Task<IActionResult> DepartmentHierarchy(long departmentID)
+        {
+            List<DepartmentViewModel> departmentViewModels = await _departmentManager.GetDepartmentHierarchy(departmentID);
+
+            return View(departmentViewModels);
+        }
     }
 }

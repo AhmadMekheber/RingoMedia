@@ -68,5 +68,35 @@ namespace Departments.BL.Manager
                 departmentViewModel.SubDepartments?.Add(await MapWithSubDepartments(subDepartment));
             }
         }
+    
+        public async Task<List<DepartmentViewModel>> GetDepartmentHierarchy(long departmentID)
+        {
+            List<DepartmentViewModel> departmentViewModels = new List<DepartmentViewModel>();
+
+            Department? department = await _departmentRepository.GetDepartmentAsync(departmentID);
+
+            if (department == null)
+            {
+                return departmentViewModels;
+            }
+
+            departmentViewModels.Add(MapDepartment(department));
+
+            while (department.ParentDepartmentID != null)
+            {
+                department = await _departmentRepository.GetDepartmentAsync(department.ParentDepartmentID.Value);
+
+                if (department != null)
+                {
+                    departmentViewModels.Add(MapDepartment(department));
+                }
+                else 
+                {
+                    break;
+                }
+            }
+
+            return departmentViewModels;
+        }
     }
 }

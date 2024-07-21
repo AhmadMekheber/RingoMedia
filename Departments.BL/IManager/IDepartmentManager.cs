@@ -7,5 +7,7 @@ namespace Departments.BL.IManager
         Task<List<DepartmentViewModel>> GetDepartmentsAsync();
 
         Task<DepartmentViewModel?> GetDepartmentAsync(long departmentID);
+
+        Task<List<DepartmentViewModel>> GetDepartmentHierarchy(long departmentID);
     }
 }
