@@ -11,7 +11,10 @@ namespace Departments.DI
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IReminderRepository, ReminderRepository>();
+
             services.AddScoped<IDepartmentManager, DepartmentManager>();
+            services.AddScoped<IReminderManager, ReminderManager>();
             
             return services;
         }

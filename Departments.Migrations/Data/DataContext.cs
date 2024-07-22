@@ -21,5 +21,7 @@ namespace Departments.Migrations.Data
         }
 
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Reminder> Reminders { get; set; }
     }
 }
