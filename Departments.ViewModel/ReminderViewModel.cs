@@ -1,11 +1,7 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace Departments.Model
+namespace Departments.ViewModel
 {
-    public class Reminder
+    public class ReminderViewModel
     {
-        [Key]
         public Guid ID { get; set; }
 
         public required string Title { get; set; }
@@ -14,7 +10,6 @@ namespace Departments.Model
 
         public required DateTime RemindingDate { get; set; }
 
-        [DefaultValue(false)]
         public bool IsMailSent { get; set; }
     }
 }
