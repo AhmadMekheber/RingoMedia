@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.5.0" />
     <ProjectReference Include="..\Departments.DAL\Departments.DAL.csproj" />
     <ProjectReference Include="..\Departments.ViewModel\Departments.ViewModel.csproj" />
   </ItemGroup>

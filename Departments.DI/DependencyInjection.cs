@@ -15,7 +15,9 @@ namespace Departments.DI
 
             services.AddScoped<IDepartmentManager, DepartmentManager>();
             services.AddScoped<IReminderManager, ReminderManager>();
-            
+
+            services.AddScoped<IMailManager, MailsManager>();
+
             return services;
         }
     }
