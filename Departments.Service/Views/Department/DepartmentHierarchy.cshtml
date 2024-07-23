@@ -1,10 +1,10 @@
 @model List<Departments.ViewModel.DepartmentViewModel>
 
-<h2>Department Hierarchy</h2>
+<h2>Department <b>@Model[0].Name</b> Hierarchy</h2>
 <ul class="department-ul">
     @foreach(var department in Model)
     {
-        <li>
+        <li class="department-li">
             <partial name="_DepartmentElement" model="@department" />
         </li>
     }

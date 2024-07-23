@@ -46,9 +46,8 @@ body {
 
 /* List Item Styling */
 .department-ul {
-  padding-top: 20px;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 .department-li {

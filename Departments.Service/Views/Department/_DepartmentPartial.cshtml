@@ -1,6 +1,8 @@
 @model Departments.ViewModel.DepartmentViewModel
 
+<li class="department-li">
 <partial name="_DepartmentElement" model="@Model" />
+</li>
 
 @if (Model.SubDepartments != null && Model.SubDepartments.Any())
 {
